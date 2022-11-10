@@ -1,7 +1,7 @@
 const Referee = require("../src/domain/Referee");
 
 describe("Referee 단위 테스트", () => {
-  test("countStrikeAndBall 메서드로 스트라이크, 볼 개수를 반환", () => {
+  test("countResult 메서드로 스트라이크, 볼 개수를 반환", () => {
     const TEST_CASE = [
       {
         inputs: ["123", "123"],
@@ -28,7 +28,7 @@ describe("Referee 단위 테스트", () => {
     TEST_CASE.forEach(({ inputs, results }) => {
       const [computerNumber, enteredNumber] = inputs;
       const [strikeCount, ballCount] = results;
-      const { strike, ball } = Referee.countStrikeAndBall(
+      const { strike, ball } = Referee.countResult(
         computerNumber,
         enteredNumber,
       );

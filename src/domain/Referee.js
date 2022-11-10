@@ -15,7 +15,7 @@ class Referee {
     return input;
   }
 
-  static countStrikeAndBall(computerNumber, enteredNumber) {
+  static countResult(computerNumber, enteredNumber) {
     const initialCounter = {
       strike: 0,
       ball: 0,

@@ -33,7 +33,7 @@ class App {
       if (!Validator.isValidNumber(playerNumber)) {
         throw new Error();
       }
-      const { strike, ball } = Referee.countStrikeAndBall(
+      const { strike, ball } = Referee.countResult(
         computerNumber,
         playerNumber,
       );
