@@ -3,8 +3,11 @@ const Utils = require("./Utils");
 
 class App {
   BALL = "볼";
+
   STRIKE = "스트라이크";
+
   NOTHING = "낫싱";
+
   MESSAGES = {
     GREET: "숫자 야구 게임을 시작합니다.",
     PLEASE_NUMBER: "숫자를 입력해주세요 : ",
@@ -40,7 +43,7 @@ class App {
       }
       const { strike, ball } = this.countStrikeAndBall(
         computerNumber,
-        enteredNumber
+        enteredNumber,
       );
       this.printMessage(this.getResultMessage({ strike, ball }));
       if (strike === 3) {
@@ -83,18 +86,16 @@ class App {
     }, initialCounter);
   }
 
-  createMessageOrder = ({ strike, ball }) => {
-    return [
-      {
-        type: this.BALL,
-        count: ball,
-      },
-      {
-        type: this.STRIKE,
-        count: strike,
-      },
-    ];
-  };
+  createMessageOrder = ({ strike, ball }) => [
+    {
+      type: this.BALL,
+      count: ball,
+    },
+    {
+      type: this.STRIKE,
+      count: strike,
+    },
+  ];
 
   getResultMessage({ strike, ball }) {
     if (strike === 0 && ball === 0) {
