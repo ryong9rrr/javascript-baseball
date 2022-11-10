@@ -1,15 +1,6 @@
-const MissionUtils = require("@woowacourse/mission-utils");
 const { RESULT } = require("../constants");
 
 class Referee {
-  static ask(message) {
-    let input;
-    MissionUtils.Console.readLine(message, (answer) => {
-      input = answer;
-    });
-    return input;
-  }
-
   static countResult(computerNumber, enteredNumber) {
     const initialCounter = {
       strike: 0,
