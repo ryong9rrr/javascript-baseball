@@ -1,53 +1,6 @@
 const App = require("../src/App");
 
 describe("숫자 야구 게임 단위 테스트", () => {
-  test("isValidNumber 메서드로 입력 받은 숫자가 서로 다른 3자리의 숫자인지 확인", () => {
-    const app = new App();
-
-    const TEST_CASE = [
-      {
-        input: "",
-        result: false,
-      },
-      {
-        input: " ",
-        result: false,
-      },
-      {
-        input: "\n",
-        result: false,
-      },
-      {
-        input: "1",
-        result: false,
-      },
-      {
-        input: "12",
-        result: false,
-      },
-      {
-        input: "123",
-        result: true,
-      },
-      {
-        input: "111",
-        result: false,
-      },
-      {
-        input: "1234",
-        result: false,
-      },
-      {
-        input: "abc",
-        result: false,
-      },
-    ];
-
-    TEST_CASE.forEach(({ input, result }) => {
-      expect(app.isValidNumber(input)).toBe(result);
-    });
-  });
-
   test("countStrikeAndBall 메서드로 스트라이크, 볼 개수를 반환", () => {
     const app = new App();
 
