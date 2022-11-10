@@ -1,9 +1,7 @@
-const App = require("../src/App");
+const Referee = require("../src/domain/Referee");
 
-describe("숫자 야구 게임 단위 테스트", () => {
+describe("Referee 단위 테스트", () => {
   test("countStrikeAndBall 메서드로 스트라이크, 볼 개수를 반환", () => {
-    const app = new App();
-
     const TEST_CASE = [
       {
         inputs: ["123", "123"],
@@ -30,7 +28,7 @@ describe("숫자 야구 게임 단위 테스트", () => {
     TEST_CASE.forEach(({ inputs, results }) => {
       const [computerNumber, enteredNumber] = inputs;
       const [strikeCount, ballCount] = results;
-      const { strike, ball } = app.countStrikeAndBall(
+      const { strike, ball } = Referee.countStrikeAndBall(
         computerNumber,
         enteredNumber,
       );
@@ -40,8 +38,6 @@ describe("숫자 야구 게임 단위 테스트", () => {
   });
 
   test("getResultMessage 메서드로 스트라이크, 볼, 낫싱을 출력", () => {
-    const app = new App();
-
     const TEST_CASE = [
       {
         strike: 3,
@@ -65,8 +61,10 @@ describe("숫자 야구 게임 단위 테스트", () => {
       },
     ];
 
+    const referee = new Referee();
+
     TEST_CASE.forEach(({ strike, ball, result }) => {
-      const message = app.getResultMessage({ strike, ball });
+      const message = referee.getResultMessage({ strike, ball });
       expect(message).toBe(result);
     });
   });
