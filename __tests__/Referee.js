@@ -61,10 +61,8 @@ describe("Referee 단위 테스트", () => {
       },
     ];
 
-    const referee = new Referee();
-
     TEST_CASE.forEach(({ strike, ball, result }) => {
-      const message = referee.getResultMessage({ strike, ball });
+      const message = Referee.getResultMessage({ strike, ball });
       expect(message).toBe(result);
     });
   });

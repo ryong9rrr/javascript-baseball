@@ -1,12 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+const { RESULT } = require("../constants");
 
 class Referee {
-  BALL = "볼";
-
-  STRIKE = "스트라이크";
-
-  NOTHING = "낫싱";
-
   static ask(message) {
     let input;
     MissionUtils.Console.readLine(message, (answer) => {
@@ -32,9 +27,9 @@ class Referee {
     }, initialCounter);
   }
 
-  getResultMessage({ strike, ball }) {
+  static getResultMessage({ strike, ball }) {
     if (strike === 0 && ball === 0) {
-      return this.NOTHING;
+      return RESULT.NOTHING;
     }
 
     return this.createMessageOrder({ strike, ball })
@@ -47,13 +42,13 @@ class Referee {
       .join(" ");
   }
 
-  createMessageOrder = ({ strike, ball }) => [
+  static createMessageOrder = ({ strike, ball }) => [
     {
-      type: this.BALL,
+      type: RESULT.BALL,
       count: ball,
     },
     {
-      type: this.STRIKE,
+      type: RESULT.STRIKE,
       count: strike,
     },
   ];
