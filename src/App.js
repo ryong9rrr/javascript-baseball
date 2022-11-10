@@ -1,6 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const Computer = require("./domain/Computer");
-const Utils = require("./Utils");
+const Validator = require("./domain/Validator");
 
 class App {
   BALL = "볼";
@@ -28,7 +28,7 @@ class App {
 
   inputNumber(computerNumber) {
     const takeInputCallback = (enteredNumber) => {
-      if (!this.isValidNumber(enteredNumber)) {
+      if (!Validator.isValidNumber(enteredNumber)) {
         throw new Error();
       }
       const { strike, ball } = this.countStrikeAndBall(
@@ -44,19 +44,6 @@ class App {
     };
 
     this.takeInput(this.MESSAGES.PLEASE_NUMBER, takeInputCallback);
-  }
-
-  isValidNumber(enteredNumber) {
-    if (typeof enteredNumber !== "string") {
-      return false;
-    }
-    if (
-      Number.isNaN(Number(enteredNumber)) ||
-      Utils.removeDuplicatedString(enteredNumber).length !== 3
-    ) {
-      return false;
-    }
-    return true;
   }
 
   countStrikeAndBall(computerNumber, enteredNumber) {
