@@ -28,27 +28,30 @@ class App {
 
   gameStart() {
     this.computerNumber = Computer.generateRandomNumber();
-    this.inputNumber();
+    this.askNumbers();
   }
 
-  inputNumber() {
-    const takeInputCallback = (enteredNumber) => {
-      if (!Validator.isValidNumber(enteredNumber)) {
-        throw new Error();
-      }
-      const { strike, ball } = Referee.countStrikeAndBall(
-        this.computerNumber,
-        enteredNumber,
-      );
-      this.printMessage(this.referee.getResultMessage({ strike, ball }));
-      if (strike === 3) {
-        this.gameOver();
-        return;
-      }
-      this.inputNumber();
-    };
+  askNumbersCallback(enteredNumber) {
+    if (!Validator.isValidNumber(enteredNumber)) {
+      throw new Error();
+    }
+    const { strike, ball } = Referee.countStrikeAndBall(
+      this.computerNumber,
+      enteredNumber,
+    );
+    this.printMessage(this.referee.getResultMessage({ strike, ball }));
+    if (strike === 3) {
+      this.gameOver();
+      return;
+    }
+    this.askNumbers();
+  }
 
-    this.takeInput(this.MESSAGES.PLEASE_NUMBER, takeInputCallback);
+  askNumbers() {
+    this.takeInput(
+      this.MESSAGES.PLEASE_NUMBER,
+      this.askNumbersCallback.bind(this),
+    );
   }
 
   gameOver() {
@@ -56,20 +59,23 @@ class App {
     this.askRestart();
   }
 
-  askRestart() {
-    const takeInputCallback = (answer) => {
-      if (answer === this.RESTART.YES) {
-        this.gameStart();
-        return;
-      }
-      if (answer === this.RESTART.NO) {
-        this.gameExit();
-        return;
-      }
-      throw new Error();
-    };
+  askRestartCallback(answer) {
+    if (answer === this.RESTART.YES) {
+      this.gameStart();
+      return;
+    }
+    if (answer === this.RESTART.NO) {
+      this.gameExit();
+      return;
+    }
+    throw new Error();
+  }
 
-    this.takeInput(this.MESSAGES.ASK_RESTART, takeInputCallback);
+  askRestart() {
+    this.takeInput(
+      this.MESSAGES.ASK_RESTART,
+      this.askRestartCallback.bind(this),
+    );
   }
 
   printMessage(message) {
