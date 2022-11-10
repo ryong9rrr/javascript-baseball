@@ -18,7 +18,6 @@ class App {
 
   constructor() {
     this.referee = new Referee();
-    this.computerNumber = null;
   }
 
   play() {
@@ -27,29 +26,22 @@ class App {
   }
 
   gameStart() {
-    this.computerNumber = NumberGenerator.generateRandomNumber();
-    this.askNumbers();
-  }
-
-  askNumbersCallback(enteredNumber) {
-    if (!Validator.isValidNumber(enteredNumber)) {
-      throw new Error();
+    const computerNumber = NumberGenerator.generateRandomNumber();
+    while (true) {
+      const playerNumber = this.referee.askNumber();
+      if (!Validator.isValidNumber(playerNumber)) {
+        throw new Error();
+      }
+      const { strike, ball } = Referee.countStrikeAndBall(
+        computerNumber,
+        playerNumber,
+      );
+      this.printMessage(this.referee.getResultMessage({ strike, ball }));
+      if (strike === 3) {
+        break;
+      }
     }
-    const { strike, ball } = Referee.countStrikeAndBall(
-      this.computerNumber,
-      enteredNumber,
-    );
-    this.printMessage(this.referee.getResultMessage({ strike, ball }));
-    if (strike === 3) {
-      this.gameOver();
-      return;
-    }
-    this.askNumbers();
-  }
-
-  askNumbers() {
-    const playerNumber = this.referee.askNumber();
-    this.askNumbersCallback(playerNumber);
+    this.gameOver();
   }
 
   gameOver() {
