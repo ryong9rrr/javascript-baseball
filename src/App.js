@@ -48,10 +48,8 @@ class App {
   }
 
   askNumbers() {
-    this.takeInput(
-      this.MESSAGES.PLEASE_NUMBER,
-      this.askNumbersCallback.bind(this),
-    );
+    const playerNumber = this.referee.askNumber();
+    this.askNumbersCallback(playerNumber);
   }
 
   gameOver() {
