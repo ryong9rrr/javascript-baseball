@@ -23,6 +23,7 @@ class App {
   play() {
     Console.print(this.MESSAGES.GREET);
     this.gameStart();
+    this.gameOver();
   }
 
   gameStart() {
@@ -41,7 +42,6 @@ class App {
         break;
       }
     }
-    this.gameOver();
   }
 
   gameOver() {
