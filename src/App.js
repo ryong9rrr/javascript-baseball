@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const Computer = require("./domain/Computer");
+const NumberGenerator = require("./domain/NumberGenerator");
 const Referee = require("./domain/Referee");
 const Validator = require("./domain/Validator");
 
@@ -27,7 +27,7 @@ class App {
   }
 
   gameStart() {
-    this.computerNumber = Computer.generateRandomNumber();
+    this.computerNumber = NumberGenerator.generateRandomNumber();
     this.askNumbers();
   }
 
