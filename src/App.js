@@ -46,26 +46,16 @@ class App {
 
   gameOver() {
     this.printMessage(this.MESSAGES.GAME_SET);
-    this.askRestart();
-  }
-
-  askRestartCallback(answer) {
-    if (answer === this.RESTART.YES) {
+    const playerAnswer = this.referee.askRestart();
+    if (playerAnswer === this.RESTART.YES) {
       this.gameStart();
       return;
     }
-    if (answer === this.RESTART.NO) {
+    if (playerAnswer === this.RESTART.NO) {
       this.gameExit();
       return;
     }
     throw new Error();
-  }
-
-  askRestart() {
-    this.takeInput(
-      this.MESSAGES.ASK_RESTART,
-      this.askRestartCallback.bind(this),
-    );
   }
 
   printMessage(message) {
