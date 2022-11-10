@@ -4,6 +4,11 @@ const Referee = require("./domain/Referee");
 const Validator = require("./domain/Validator");
 
 class App {
+  RESTART = {
+    YES: "1",
+    NO: "2",
+  };
+
   MESSAGES = {
     GREET: "숫자 야구 게임을 시작합니다.",
     PLEASE_NUMBER: "숫자를 입력해주세요 : ",
@@ -52,11 +57,11 @@ class App {
 
   askRestart() {
     const takeInputCallback = (answer) => {
-      if (answer === "1") {
+      if (answer === this.RESTART.YES) {
         this.gameStart();
         return;
       }
-      if (answer === "2") {
+      if (answer === this.RESTART.NO) {
         this.gameExit();
         return;
       }
