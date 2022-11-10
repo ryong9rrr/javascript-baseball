@@ -7,10 +7,13 @@ class Referee {
 
   NOTHING = "낫싱";
 
-  MESSAGES = {
-    PLEASE_NUMBER: "숫자를 입력해주세요 : ",
-    ASK_RESTART: "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n",
-  };
+  static ask(message) {
+    let input;
+    MissionUtils.Console.readLine(message, (answer) => {
+      input = answer;
+    });
+    return input;
+  }
 
   static countStrikeAndBall(computerNumber, enteredNumber) {
     const initialCounter = {
@@ -54,22 +57,6 @@ class Referee {
       count: strike,
     },
   ];
-
-  askNumber() {
-    let input;
-    MissionUtils.Console.readLine(this.MESSAGES.PLEASE_NUMBER, (answer) => {
-      input = answer;
-    });
-    return input;
-  }
-
-  askRestart() {
-    let input;
-    MissionUtils.Console.readLine(this.MESSAGES.ASK_RESTART, (answer) => {
-      input = answer;
-    });
-    return input;
-  }
 }
 
 module.exports = Referee;

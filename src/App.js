@@ -29,7 +29,7 @@ class App {
   gameStart() {
     const computerNumber = NumberGenerator.generateRandomNumber();
     while (true) {
-      const playerNumber = this.referee.askNumber();
+      const playerNumber = Referee.ask(this.MESSAGES.PLEASE_NUMBER);
       if (!Validator.isValidNumber(playerNumber)) {
         throw new Error();
       }
@@ -46,7 +46,7 @@ class App {
 
   gameOver() {
     Console.print(this.MESSAGES.GAME_SET);
-    const playerAnswer = this.referee.askRestart();
+    const playerAnswer = Referee.ask(this.MESSAGES.ASK_RESTART);
     if (playerAnswer === this.RESTART.YES) {
       this.gameStart();
       return;
