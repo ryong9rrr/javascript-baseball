@@ -1,4 +1,4 @@
-const MissionUtils = require("@woowacourse/mission-utils");
+const { Console } = require("@woowacourse/mission-utils");
 const NumberGenerator = require("./domain/NumberGenerator");
 const Referee = require("./domain/Referee");
 const Validator = require("./domain/Validator");
@@ -21,7 +21,7 @@ class App {
   }
 
   play() {
-    this.printMessage(this.MESSAGES.GREET);
+    Console.print(this.MESSAGES.GREET);
     this.gameStart();
   }
 
@@ -36,7 +36,7 @@ class App {
         computerNumber,
         playerNumber,
       );
-      this.printMessage(this.referee.getResultMessage({ strike, ball }));
+      Console.print(this.referee.getResultMessage({ strike, ball }));
       if (strike === 3) {
         break;
       }
@@ -45,29 +45,17 @@ class App {
   }
 
   gameOver() {
-    this.printMessage(this.MESSAGES.GAME_SET);
+    Console.print(this.MESSAGES.GAME_SET);
     const playerAnswer = this.referee.askRestart();
     if (playerAnswer === this.RESTART.YES) {
       this.gameStart();
       return;
     }
     if (playerAnswer === this.RESTART.NO) {
-      this.gameExit();
+      Console.close();
       return;
     }
     throw new Error();
-  }
-
-  printMessage(message) {
-    MissionUtils.Console.print(message);
-  }
-
-  takeInput(message, callbackFn) {
-    MissionUtils.Console.readLine(message, callbackFn);
-  }
-
-  gameExit() {
-    MissionUtils.Console.close();
   }
 }
 
