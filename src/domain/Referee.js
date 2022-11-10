@@ -1,9 +1,15 @@
+const MissionUtils = require("@woowacourse/mission-utils");
+
 class Referee {
   BALL = "볼";
 
   STRIKE = "스트라이크";
 
   NOTHING = "낫싱";
+
+  MESSAGES = {
+    PLEASE_NUMBER: "숫자를 입력해주세요 : ",
+  };
 
   static countStrikeAndBall(computerNumber, enteredNumber) {
     const initialCounter = {
@@ -47,6 +53,14 @@ class Referee {
       count: strike,
     },
   ];
+
+  askNumber() {
+    let input;
+    MissionUtils.Console.readLine(this.MESSAGES.PLEASE_NUMBER, (answer) => {
+      input = answer;
+    });
+    return input;
+  }
 }
 
 module.exports = Referee;
