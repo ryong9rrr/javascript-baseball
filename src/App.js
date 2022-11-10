@@ -41,7 +41,7 @@ class App {
       playerNumber,
     );
     Console.print(Referee.getResultMessage({ strike, ball }));
-    if (strike === 3) {
+    if (this.isSuccess(strike)) {
       this.gameOver();
       return;
     }
@@ -58,6 +58,10 @@ class App {
       return;
     }
     throw new Error();
+  }
+
+  isSuccess(strike) {
+    return strike === 3;
   }
 }
 
