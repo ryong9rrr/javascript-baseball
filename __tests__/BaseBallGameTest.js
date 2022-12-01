@@ -3,6 +3,12 @@ const BaseBallGame = require("../src/domain/BaseBallGame");
 const generateRandomNumbers = () => [1, 2, 3];
 
 describe("BaseBallGame 테스트", () => {
+  test("랜덤 생성된 숫자 배열의 길이가 3이 아니면 예외 발생", () => {
+    expect(() => {
+      new BaseBallGame(() => []);
+    }).toThrow();
+  });
+
   test("공이 몇 개 포함됐는지 알려주는 기능", () => {
     const baseBallGame = new BaseBallGame(generateRandomNumbers);
     const TEST_CASE = [
