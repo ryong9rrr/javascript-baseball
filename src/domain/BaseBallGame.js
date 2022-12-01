@@ -1,13 +1,17 @@
+const LENGTH = 3;
+
 class BaseBallGame {
   #computer;
 
   constructor(generateRandomNumbers) {
-    this.#computer = generateRandomNumbers();
+    const computer = generateRandomNumbers();
+    this.#validate(computer);
+    this.#computer = computer;
   }
 
   getStrikeCount(numbers) {
     let result = 0;
-    for (let i = 0; i < 3; i += 1) {
+    for (let i = 0; i < LENGTH; i += 1) {
       if (numbers[i] === this.#computer[i]) {
         result += 1;
       }
@@ -21,6 +25,12 @@ class BaseBallGame {
 
   #intersect(numbers) {
     return new Set(numbers.filter((x) => new Set(this.#computer).has(x)));
+  }
+
+  #validate(numbers) {
+    if (numbers.length !== LENGTH) {
+      throw new Error(`number's length must be ${LENGTH}`);
+    }
   }
 }
 
