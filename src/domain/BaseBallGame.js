@@ -19,6 +19,10 @@ class BaseBallGame {
     return result;
   }
 
+  getBallCount(numbers) {
+    return this.getIncludedCount(numbers) - this.getStrikeCount(numbers);
+  }
+
   getIncludedCount(numbers) {
     return [...this.#intersect(numbers)].length;
   }
