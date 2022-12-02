@@ -5,7 +5,7 @@ describe("입력값 유효성 통합테스트", () => {
     const TEST_CASE = ["ab", "1234", "11"];
     TEST_CASE.forEach((input) => {
       expect(() => {
-        InputValidator.validate(input);
+        InputValidator.validateInputNumber(input);
       }).toThrow("[ERROR]");
     });
   });
@@ -14,7 +14,7 @@ describe("입력값 유효성 통합테스트", () => {
     const TEST_CASE = ["abc", "c12", "12a", " 123", "123 ", "   "];
     TEST_CASE.forEach((input) => {
       expect(() => {
-        InputValidator.validate(input);
+        InputValidator.validateInputNumber(input);
       }).toThrow("[ERROR]");
     });
   });
@@ -23,7 +23,7 @@ describe("입력값 유효성 통합테스트", () => {
     const TEST_CASE = ["102"];
     TEST_CASE.forEach((input) => {
       expect(() => {
-        InputValidator.validate(input);
+        InputValidator.validateInputNumber(input);
       }).toThrow("[ERROR]");
     });
   });
@@ -32,7 +32,7 @@ describe("입력값 유효성 통합테스트", () => {
     const TEST_CASE = ["121"];
     TEST_CASE.forEach((input) => {
       expect(() => {
-        InputValidator.validate(input);
+        InputValidator.validateInputNumber(input);
       }).toThrow("[ERROR]");
     });
   });
