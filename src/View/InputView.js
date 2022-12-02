@@ -9,10 +9,15 @@ const InputView = {
   },
 
   readNumberCallback(inputNumber, cb) {
-    InputValidator.validate(inputNumber);
-    const numbers = inputNumber.split("").map((number) => Number(number));
-    Console.print("\n");
-    cb(numbers);
+    try {
+      InputValidator.validate(inputNumber);
+      const numbers = inputNumber.split("").map((number) => Number(number));
+      Console.print("\n");
+      cb(numbers);
+    } catch (error) {
+      Console.print(error.message);
+      this.readNumber(cb);
+    }
   },
 
   readReplay(cb) {
@@ -23,8 +28,13 @@ const InputView = {
   },
 
   readReplayCallback(answer, cb) {
-    InputValidator.validateReplayAnswer(answer);
-    cb(answer);
+    try {
+      InputValidator.validateReplayAnswer(answer);
+      cb(answer);
+    } catch (error) {
+      Console.print(error.message);
+      this.readReplay(cb);
+    }
   },
 };
 
