@@ -7,7 +7,7 @@ const ERRORS = Object.freeze({
 
 class InputValidator {
   static validateReplayAnswer(answer) {
-    if (answer !== "1" || answer !== "2") {
+    if (answer !== "1" && answer !== "2") {
       throw new Error(ERRORS.REPLAY);
     }
   }
