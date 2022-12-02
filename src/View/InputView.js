@@ -10,9 +10,8 @@ const InputView = {
 
   readNumberCallback(inputNumber, cb) {
     try {
-      InputValidator.validate(inputNumber);
+      InputValidator.validateInputNumber(inputNumber);
       const numbers = inputNumber.split("").map((number) => Number(number));
-      Console.print("\n");
       cb(numbers);
     } catch (error) {
       Console.print(error.message);
