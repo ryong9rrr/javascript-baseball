@@ -36,4 +36,10 @@ describe("입력값 유효성 통합테스트", () => {
       }).toThrow("[ERROR]");
     });
   });
+
+  test("다시 시작할 때 입력값이 1이나 2가 아니면 에러발생", () => {
+    expect(() => {
+      InputValidator.validateReplayAnswer("3");
+    }).toThrow("[ERROR]");
+  });
 });
